@@ -36,4 +36,13 @@ export class AppointmentService {
 
     return appointments;
   }
+
+  async cancelAppointment(id: string): Promise<Appointment> {
+    const appointment = await this.appointmentModel
+      .findByIdAndUpdate(id, { status: 'cancelled' })
+      .populate('doctor', 'id name email role')
+      .populate('patient', 'id name email role');
+
+    return appointment;
+  }
 }

@@ -5,6 +5,8 @@ import {
   Post,
   Request,
   Get,
+  Param,
+  Put,
 } from '@nestjs/common';
 import { AppointmentService } from './appointment.service';
 import { UserJwtAuthGuard } from '../user-jwt/jwt-auth.guard';
@@ -34,6 +36,16 @@ export class AppointmentController {
 
     return {
       message: 'Appointments fetched successfully',
+      data: data,
+    };
+  }
+
+  @Put('cancel/:id')
+  async cancelAppointment(@Param('id') id: string) {
+    const data = await this.appointmentService.cancelAppointment(id);
+
+    return {
+      message: 'Appointment cancelled successfully',
       data: data,
     };
   }
