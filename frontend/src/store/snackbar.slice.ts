@@ -13,7 +13,7 @@ const initialState: State = {
 };
 
 const snackbarSlice = createSlice({
-  name: "auth",
+  name: "snackbar",
   initialState,
   reducers: {
     set: (state, action: { payload: State; type: string }) => {
